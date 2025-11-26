@@ -1,0 +1,38 @@
+# Byte-code files
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# Virtual environment
+venv/
+.venv/
+env/
+.env/
+
+# IDE-specific files (e.g., VS Code, PyCharm)
+.vscode/
+.idea/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Pip-related files
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Installer files
+*.egg-info/
+.eggs/
+
+# Testing and build artifacts
+.coverage
+.tox/
+build/
+dist/
+
+# Jupyter Notebook specific files
+.ipynb_checkpoints/
+
+# Environment variables
+.env
