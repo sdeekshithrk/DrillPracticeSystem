@@ -5,7 +5,11 @@ from app.db.database import Base, engine
 from app import problems
 from app import evaluator
 from app.auth.router import router as auth_router
+from app.dashboard import router as dashboard_router
+import debugpy
 
+debugpy.listen(("0.0.0.0", 5678))
+print(" Debugger is waiting... Attach VS Code NOW")
 
 Base.metadata.create_all(bind=engine)
 
@@ -27,6 +31,7 @@ app.add_middleware(
 app.include_router(problems.router)
 app.include_router(evaluator.router)
 app.include_router(auth_router)
+app.include_router(dashboard_router)
 
 
 @app.get("/")

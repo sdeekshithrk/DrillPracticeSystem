@@ -30,7 +30,9 @@ CREATE TABLE users (
   password_hash TEXT NOT NULL,
   first_name VARCHAR NOT NULL,
   last_name VARCHAR NOT NULL,
-  created_at TIMESTAMP DEFAULT NOW()
+  created_at TIMESTAMP DEFAULT NOW(),
+  xp INTEGER DEFAULT 0,
+  rank VARCHAR DEFAULT 'Beginner'
 );
 
 CREATE TABLE user_problem_status (
@@ -41,7 +43,8 @@ CREATE TABLE user_problem_status (
     last_answer TEXT,
     last_correct_answer TEXT,
     is_correct BOOLEAN DEFAULT FALSE,
-    updated_at TIMESTAMPTZ DEFAULT now()
+    updated_at TIMESTAMPTZ DEFAULT now(),
+    xp_awarded BOOLEAN DEFAULT FALSE
 );
 
 

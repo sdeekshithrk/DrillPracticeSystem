@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session
 from app.models.models import Problem, UserProblemStatus
+from app.models.models import User, Problem
+from app.utils import calculate_xp_gain
 
 def get_all_problems(db: Session):
     return db.query(Problem).all()
@@ -28,6 +30,8 @@ def upsert_user_problem_status(
     student_answer: str,
     is_correct: bool,
 ):
+    
+
     record = get_user_problem_status(db, user_id, problem_id)
 
     if record is None:
@@ -37,15 +41,24 @@ def upsert_user_problem_status(
         )
         db.add(record)
 
-    # Update status fields
     record.last_answer = student_answer
     record.is_correct = is_correct
 
+    # Fetch user + problem
+    user = db.query(User).filter(User.id == user_id).first()
+    problem = db.query(Problem).filter(Problem.id == problem_id).first()
+
     if is_correct:
+        # Update status
         record.status = "SOLVED"
         record.last_correct_answer = student_answer
+
+        # Add XP only once per problem
+        if not getattr(record, "xp_awarded", False):
+            gain = calculate_xp_gain(problem.difficulty)
+            user.xp += gain
+            record.xp_awarded = True  # prevents XP farming
     else:
-        # Only mark as ATTEMPTED if not already SOLVED
         if record.status != "SOLVED":
             record.status = "ATTEMPTED"
 

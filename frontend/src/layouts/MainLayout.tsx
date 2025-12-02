@@ -49,13 +49,13 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
             {/* DASHBOARD TAB */}
             <Link
-              to="/"
+              to="/dashboard"
               className={`
                 flex items-center gap-3 px-4 py-2.5 rounded-xl
                 text-base font-semibold
                 transition-all duration-200 ease-out
                 ${
-                  isActive("/")
+                  isActive("/dashboard")
                     ? "bg-gray-800 text-white shadow-lg shadow-cyan-500/30 scale-[1.08]"
                     : "text-gray-300 hover:text-white hover:bg-gray-800/80 hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-[1.05]"
                 }
