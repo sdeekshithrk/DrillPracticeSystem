@@ -11,7 +11,12 @@ from app.dashboard import router as dashboard_router
 # debugpy.listen(("0.0.0.0", 5678))
 # print(" Debugger is waiting... Attach VS Code NOW")
 
-Base.metadata.create_all(bind=engine)
+# Base.metadata.create_all(bind=engine)
+import os
+
+if os.getenv("RUN_MIGRATIONS", "false").lower() == "true":
+    Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(title="Drill & Practice API", version="1.0.0")
 
