@@ -131,7 +131,7 @@ export default function SolveProblemPage() {
         student_answer: verbalExpr.trim(),
       };
 
-      const res = await axiosClient.post("/evaluate", payload);
+      const res = await axiosClient.post("/evaluate/answer", payload);
       setEvaluation(res.data);
     } catch (err) {
       setEvaluation({

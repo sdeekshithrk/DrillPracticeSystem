@@ -66,7 +66,7 @@ def load_logic_ast(json_obj):
 # -----------------------------
 # MAIN EVALUATION ENDPOINT
 # -----------------------------
-@router.post("/")
+@router.post("/answer")
 async def evaluate(
     req: EvalRequest,
     db: Session = Depends(get_db),
