@@ -6,10 +6,10 @@ from app import problems
 from app import evaluator
 from app.auth.router import router as auth_router
 from app.dashboard import router as dashboard_router
-import debugpy
+# import debugpy
 
-debugpy.listen(("0.0.0.0", 5678))
-print(" Debugger is waiting... Attach VS Code NOW")
+# debugpy.listen(("0.0.0.0", 5678))
+# print(" Debugger is waiting... Attach VS Code NOW")
 
 Base.metadata.create_all(bind=engine)
 
@@ -18,6 +18,7 @@ app = FastAPI(title="Drill & Practice API", version="1.0.0")
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://drill-practice-system.vercel.app"
 ]
 
 app.add_middleware(
